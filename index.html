@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario filtro propietarios</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>COMPARTA LA INFORMACIÓN DE SU PROPIEDAD</h1>
+    <p class="subTitle">Para ofrecerle una valoración y la mejor estrategia de venta.</p>
+    <form id="filtro-form">
+      
+      <!-- Datos de contacto -->
+      <fieldset class="vertical">
+
+        <label for="nombre">Nombre completo *</label>
+        <small class="hint">Introduce tu nombre y apellidos.</small>
+        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+
+        <label for="email">Correo electrónico *</label>
+        <small class="hint">Asegúrate de escribir un email válido para poder contactarte.</small>
+        <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+
+        <label for="telefono">Teléfono *</label>
+        <small class="hint">Incluye tu número con prefijo internacional si es necesario.</small>
+        <div class="phone-field">
+          <button type="button" id="prefixBtn" class="prefix-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="prefixList">
+            <span class="flag">🇪🇸</span> <span class="dial"><strong>+34</strong></span>
+          </button>
+          <input type="hidden" id="prefijo" name="prefijo" value="+34">
+          <input type="tel" id="telefono" name="telefono" required inputmode="numeric" pattern="[0-9 ]+" title="Solo números y espacios" placeholder="600 123 456" autocomplete="tel">
+          <div id="prefixList" class="prefix-list" role="listbox" hidden></div>
+        </div>
+      </fieldset>
+
+      <!-- Pregunta 1 -->
+      <fieldset class="questionVertical">
+        <legend>Tipo de propiedad a vender</legend>
+        <p class="hint">Selecciona la opción que mejor describa tu propiedad:</p>
+        <label><input type="radio" name="tipo" value="Piso / Apartamento" required> Piso / Apartamento</label>
+        <label><input type="radio" name="tipo" value="Casa / Chalet"> Casa / Chalet</label>
+        <label><input type="radio" name="tipo" value="Parcela"> Parcela</label>
+        <label><input type="radio" name="tipo" value="Local comercial"> Local comercial</label>
+        <label><input type="radio" name="tipo" value="Otro"> Otro</label>
+      </fieldset>
+
+      <!-- Pregunta 2 -->
+      <fieldset class="questionVertical">
+        <legend>Ubicación de la propiedad</legend>
+        <p class="hint">Indica el municipio o zona donde se encuentra la propiedad.</p>
+        <input type="text" name="ubicacion" id="ubicacion" required placeholder="Municipio / zona" autocomplete="off">
+      </fieldset>
+
+      <!-- Pregunta 3 -->
+      <fieldset class="questionVertical">
+        <legend>Precio aproximado de venta</legend>
+        <p class="hint">Selecciona el rango que mejor se ajuste a tu expectativa de precio:</p>
+        <label><input type="radio" name="precio" value="Menos de 150000" required> Menos de 150.000 €</label>
+        <label><input type="radio" name="precio" value="150000-300000"> 150.000 – 300.000 €</label>
+        <label><input type="radio" name="precio" value="300000-500000"> 300.000 – 500.000 €</label>
+        <label><input type="radio" name="precio" value="Mas de 500000"> Más de 500.000 €</label>
+      </fieldset>
+
+      <!-- Pregunta 4 -->
+      <fieldset class="questionVertical">
+        <legend>Plazo estimado de venta</legend>
+        <p class="hint">¿En qué tiempo te gustaría vender?</p>
+        <label><input type="radio" name="plazo" value="Urgente" required> Urgente – menos de 3 meses</label>
+        <label><input type="radio" name="plazo" value="Proximo plazo"> Próximo plazo – entre 3 y 6 meses</label>
+        <label><input type="radio" name="plazo" value="Sin prisa"> Sin prisa – más de 6 meses</label>
+      </fieldset>
+
+      <!-- Pregunta 5 -->
+      <fieldset class="questionVertical">
+        <legend>Comentarios adicionales (Opcional)</legend>
+        <p class="hint">Añade cualquier detalle relevante (estado de la propiedad, reformas recientes, situación legal, etc.).</p>
+        <textarea id="comentarios" name="comentarios" rows="4" placeholder="Escribe aquí tus comentarios"></textarea>
+      </fieldset>
+
+      <!-- Botón enviar -->
+      <button type="submit">Enviar formulario</button>
+      <div id="status" role="status" aria-live="polite" style="margin-top: .75rem; font-size: .95rem;
+      color:#003366;"></div>
+    </form>
+  </div>
+
+  <script src="./js/app.js" defer></script>
+</body>
+</html>
