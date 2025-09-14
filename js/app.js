@@ -1,4 +1,4 @@
-const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbxoT396QdwM2baSNkDPSYSjYB42dw3UWjhuDHLrLWb6Jb0ZF7HJ8Au2EBxlMAivh7TY/exec";
+const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhHtVsFoNDCAXM75gDqTeNgcumvIqHbim5FBox2GAgTfGKN0Bh4/exec";
 
 (function () {
   const form = document.getElementById("filtro-form");
