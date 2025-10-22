@@ -8,8 +8,11 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>COMPARTA LA INFORMACIÓN DE SU PROPIEDAD</h1>
-    <p class="subTitle">Para ofrecerle una valoración y la mejor estrategia de venta.</p>
+    <div class="form-logo">
+      <img src="./assets/21Century San Cugat_black.png" alt="Century 21 San Cugat">
+    </div>
+    <h1>CUÉNTANOS SOBRE TU PROPIEDAD</h1>
+    <p class="subTitle">Para ofrecer la valoración y estrategia de venta más acertadas.</p>
     <form id="filtro-form">
       
       <!-- Datos de contacto -->
@@ -53,8 +56,8 @@
         <input type="text" name="ubicacion" id="ubicacion" required placeholder="Municipio / zona" autocomplete="off">
       </fieldset>
 
-      <!-- Pregunta 3 -->
-      <fieldset class="questionVertical">
+      <!-- Pregunta 3 (oculta temporalmente) -->
+      <fieldset class="questionVertical" hidden disabled aria-hidden="true">
         <legend>Precio aproximado de venta</legend>
         <p class="hint">Selecciona el rango que mejor se ajuste a tu expectativa de precio:</p>
         <label><input type="radio" name="precio" value="Menos de 150000" required> Menos de 150.000 €</label>
@@ -63,7 +66,7 @@
         <label><input type="radio" name="precio" value="Mas de 500000"> Más de 500.000 €</label>
       </fieldset>
 
-      <!-- Pregunta 4 -->
+      <!-- Pregunta 3 -->
       <fieldset class="questionVertical">
         <legend>Plazo estimado de venta</legend>
         <p class="hint">¿En qué tiempo te gustaría vender?</p>
@@ -72,8 +75,8 @@
         <label><input type="radio" name="plazo" value="Sin prisa"> Sin prisa – más de 6 meses</label>
       </fieldset>
 
-      <!-- Pregunta 5 -->
-      <fieldset class="questionVertical">
+      <!-- Pregunta 4 (oculta temporalmente) -->
+      <fieldset class="questionVertical" hidden aria-hidden="true">
         <legend>Comentarios adicionales (Opcional)</legend>
         <p class="hint">Añade cualquier detalle relevante (estado de la propiedad, reformas recientes, situación legal, etc.).</p>
         <textarea id="comentarios" name="comentarios" rows="4" placeholder="Escribe aquí tus comentarios"></textarea>
@@ -82,7 +85,7 @@
       <!-- Botón enviar -->
       <button type="submit">Enviar formulario</button>
       <div id="status" role="status" aria-live="polite" style="margin-top: .75rem; font-size: .95rem;
-      color:#003366;"></div>
+      color:#19191A;"></div>
     </form>
   </div>
 
