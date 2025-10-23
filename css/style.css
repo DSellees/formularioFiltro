@@ -1,13 +1,26 @@
 
 
+:root {
+  --accent-primary: #CAAD63;
+  --accent-primary-dark: #8E7330;
+  --accent-primary-hover: #B8953C;
+  --accent-primary-border: #D9C88C;
+  --accent-primary-light: #F5EED8;
+  --accent-primary-lighter: #E8D69B;
+  --text-primary: #19191A;
+  --accent-text-muted: #19191A;
+  --accent-shadow: rgba(202, 173, 99, 0.28);
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #e6f2ff, #cce0ff);
+  background: linear-gradient(135deg, var(--accent-primary-light), var(--accent-primary-lighter));
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  color: var(--text-primary);
 }
 
 .wrap {
@@ -19,15 +32,24 @@ body {
   width: 90%;
 }
 
+.form-logo {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.form-logo img {
+  max-width: 220px;
+  height: auto;
+}
+
 h1 {
   text-align: center;
-  color: #0056b3;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .subTitle {
   text-align: center;
-  color: #5c6f91;
+  color: var(--text-primary);
   margin-top: -0.25rem;
   margin-bottom: 1.25rem;
   font-size: .98rem;
@@ -41,7 +63,7 @@ fieldset {
 legend {
   display: block;
   font-weight: 700;
-  color: #003366;
+  color: var(--text-primary);
   font-size: 1.1rem;
   line-height: 1.25;
   margin-bottom: 0.6rem;
@@ -55,7 +77,7 @@ legend {
 .questionVertical > legend::before {
   counter-increment: pregunta;
   content: counter(pregunta) ". ";
-  color: #3399ff;
+  color: var(--accent-primary);
   font-weight: 700;
 }
 
@@ -70,20 +92,21 @@ label[for="telefono"] {
 label {
   display: block;
   margin: 0.5rem 0;
-  color: #004080;
+  color: var(--text-primary);
 }
 
 input[type="text"], input[type="email"], input[type="tel"], textarea {
   width: 100%;
   padding: 0.7rem 0.9rem; /* igual en todos los campos */
-  border: 1px solid #b3d1ff;
+  border: 1px solid var(--accent-primary-border);
   border-radius: 6px;
-  background: #f8fbff;
+  background: var(--accent-primary-light);
   margin-top: 0.3rem;
   margin-bottom: 0.8rem;
   font-size: 1rem; /* tamaño base cómodo */
   line-height: 1.2;
   box-sizing: border-box; /* evita que el borde aumente el ancho total */
+  color: var(--text-primary);
 }
 
 /* Textarea: auto-ajuste de alto, sin redimensionado manual y nunca supera el ancho */
@@ -108,11 +131,11 @@ textarea {
   align-items: center;
   gap: .4rem;
   padding: .7rem .9rem; /* igual que el input */
-  background: #eef6ff;
-  border: 1px solid #b3d1ff;
+  background: var(--accent-primary-light);
+  border: 1px solid var(--accent-primary-border);
   border-right: none;
   border-radius: 6px 0 0 6px;
-  color: #003366;
+  color: var(--text-primary);
   cursor: pointer;
   width: auto; /* override global button width */
   box-sizing: border-box;
@@ -123,15 +146,15 @@ textarea {
   appearance: none;
   line-height: 1.2; /* igual que input */
 }
-.phone-field .prefix-btn:hover { background: #e6f1ff; }
+.phone-field .prefix-btn:hover { background: var(--accent-primary-lighter); }
 .phone-field:focus-within .prefix-btn {
-  border-color: #3399ff;
-  box-shadow: 0 0 0 3px rgba(51,153,255,.15);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-shadow);
 }
 .phone-field input#telefono:focus {
   outline: none;
-  border-color: #3399ff;
-  box-shadow: 0 0 0 3px rgba(51,153,255,.15);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-shadow);
 }
 .phone-field .prefix-btn .dial { font-size: .95em; }
 .phone-field .prefix-btn .dial strong { font-weight: 600; }
@@ -153,7 +176,7 @@ textarea {
   left: 0;
   right: 0;
   background: #fff;
-  border: 1px solid #b3d1ff;
+  border: 1px solid var(--accent-primary-border);
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0,0,0,.08);
   max-height: 280px;
@@ -165,12 +188,12 @@ textarea {
   top: 0;
   background: #fff;
   padding: .5rem;
-  border-bottom: 1px solid #eef2ff;
+  border-bottom: 1px solid var(--accent-primary-border);
 }
 .prefix-search input {
   width: 100%;
   padding: .5rem .6rem;
-  border: 1px solid #b3d1ff;
+  border: 1px solid var(--accent-primary-border);
   border-radius: 6px;
   font: inherit;
   box-sizing: border-box;
@@ -187,8 +210,8 @@ textarea {
   cursor: pointer;
   color: inherit;
 }
-.prefix-option:hover { background: #f0f6ff; }
-.prefix-option .dial { font-weight: 600; color: #003366; }
+.prefix-option:hover { background: var(--accent-primary-light); }
+.prefix-option .dial { font-weight: 600; color: var(--text-primary); }
 
 /* Placeholders más grandes y legibles */
 input::placeholder, textarea::placeholder {
@@ -199,7 +222,7 @@ input::placeholder, textarea::placeholder {
 .hint {
   display: block;
   margin: .15rem 0 .4rem;
-  color: #5c6f91;
+  color: var(--text-primary);
   font-size: .92rem;
 }
 
@@ -212,7 +235,7 @@ input[type="radio"] {
 }
 
 button {
-  background: #3399ff;
+  background: var(--accent-primary);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -224,7 +247,7 @@ button {
 }
 
 button:hover {
-  background: #267fd9;
+  background: var(--accent-primary-hover);
 }
 
 /* Estados del botón durante el envío */
@@ -256,21 +279,21 @@ button.is-loading::after {
 /* Confirmación tras envío */
 .confirmation {
   background: #ffffff;
-  border: 1px solid #e6ecff;
+  border: 1px solid var(--accent-primary-border);
   border-radius: 12px;
   padding: 1.25rem;
   box-shadow: 0 4px 16px rgba(0,0,0,.06);
 }
 .confirmationTitle {
   margin: 0 0 .6rem 0;
-  color: #0056b3;
+  color: var(--text-primary);
   font-size: 1.9rem;
   text-align: center;
   text-transform: uppercase;
 }
 .confirmation p {
   margin: 0 0 1rem 0;
-  color: #405372;
+  color: var(--text-primary);
   text-align: center;
 }
 .socialLinks {
@@ -285,9 +308,9 @@ button.is-loading::after {
   justify-content: center;
   width: 72px;
   height: 72px;
-  background: #0056b3; /* azul de los títulos */
+  background: var(--accent-primary); /* color corporativo */
   border: none;
-  /* usar máscara con el SVG para colorearlo del azul */
+  /* usar máscara con el SVG para colorearlo con el tono corporativo */
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: 62%;
