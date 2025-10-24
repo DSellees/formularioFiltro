@@ -105,5 +105,22 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   </div>
 
   <script src="./js/app.js" defer></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('filtro-form');
+  // Ensure form and TikTok pixel are available
+  if (!form || typeof ttq === 'undefined' || !ttq.track) return;
+
+  // Track lead when the form is submitted
+  form.addEventListener('submit', function () {
+    try {
+      ttq.track('SubmitForm', {
+        content_id: 'lead-sant-cugat',
+        content_type: 'lead_form'
+      });
+    } catch (e) {}
+  });
+});
+</script>
 </body>
 </html>
