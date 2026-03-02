@@ -10,6 +10,10 @@ const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhH
   const prefixBtn = document.getElementById('prefixBtn');
   const prefixList = document.getElementById('prefixList');
   const phoneInput = document.getElementById('telefono');
+  const nameInput = document.getElementById('nombre');
+  const emailInput = document.getElementById('email');
+  const locationInput = document.getElementById('ubicacion');
+  const statusEl = document.getElementById('status');
   let prefixSearchInput = null;
   // Autocompletado eliminado: el campo 'ubicacion' queda manual
   const commentsInput = document.getElementById('comentarios');
@@ -465,6 +469,84 @@ const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhH
     }
   }
 
+  function setStatusMessage(message, kind = "error") {
+    if (!statusEl) return;
+    statusEl.textContent = message || "";
+    statusEl.style.color = kind === "error" ? "#b3261e" : "#19191A";
+  }
+
+  function clearCustomValidation() {
+    [nameInput, emailInput, phoneInput, locationInput].forEach((el) => {
+      if (el) el.setCustomValidity("");
+    });
+  }
+
+  function validateBeforeSubmit() {
+    clearCustomValidation();
+    setStatusMessage("");
+
+    if (nameInput) {
+      const normalizedName = (nameInput.value || "").replace(/\s+/g, " ").trim();
+      const words = normalizedName.split(" ").filter(Boolean);
+      const namePattern = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' -]+$/;
+
+      nameInput.value = normalizedName;
+
+      if (normalizedName.length < 5) {
+        nameInput.setCustomValidity("Introduce nombre y apellidos (mínimo 5 caracteres).");
+      } else if (words.length < 2) {
+        nameInput.setCustomValidity("Introduce al menos nombre y apellido.");
+      } else if (!namePattern.test(normalizedName)) {
+        nameInput.setCustomValidity("El nombre solo puede contener letras, espacios, guiones y apóstrofes.");
+      }
+    }
+
+    if (emailInput) {
+      const normalizedEmail = (emailInput.value || "").trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      emailInput.value = normalizedEmail;
+
+      if (!emailPattern.test(normalizedEmail)) {
+        emailInput.setCustomValidity("Introduce un correo electrónico válido.");
+      }
+    }
+
+    if (phoneInput) {
+      const digitsOnly = (phoneInput.value || "").replace(/\D+/g, "");
+      if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+        phoneInput.setCustomValidity("El teléfono debe tener entre 7 y 15 dígitos.");
+      }
+    }
+
+    if (locationInput) {
+      const normalizedLocation = (locationInput.value || "").replace(/\s+/g, " ").trim();
+      locationInput.value = normalizedLocation;
+
+      if (normalizedLocation.length < 3) {
+        locationInput.setCustomValidity("La ubicación debe tener al menos 3 caracteres.");
+      } else if (!/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(normalizedLocation)) {
+        locationInput.setCustomValidity("Introduce una ubicación válida (municipio o zona).");
+      }
+    }
+
+    const tipoChecked = form.querySelector('input[name="tipo"]:checked');
+    const plazoChecked = form.querySelector('input[name="plazo"]:checked');
+
+    if (!tipoChecked || !plazoChecked) {
+      setStatusMessage("Completa las preguntas obligatorias antes de enviar.");
+      return false;
+    }
+
+    if (!form.checkValidity()) {
+      setStatusMessage("Revisa los campos marcados e inténtalo de nuevo.");
+      form.reportValidity();
+      return false;
+    }
+
+    return true;
+  }
+
   function renderConfirmation() {
     const wrap = document.querySelector('.wrap');
     if (!wrap) return;
@@ -483,6 +565,10 @@ const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhH
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (!validateBeforeSubmit()) {
+      return;
+    }
 
     if (!ENDPOINT_URL || ENDPOINT_URL.includes("REEMPLAZA")) {
       btnState("error");
@@ -519,6 +605,7 @@ const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhH
         mode: "no-cors",
       });
 
+      setStatusMessage("");
       btnState("success");
       form.reset();
       renderConfirmation();
