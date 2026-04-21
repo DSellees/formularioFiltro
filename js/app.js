@@ -1,4 +1,4 @@
-const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhHtVsFoNDCAXM75gDqTeNgcumvIqHbim5FBox2GAgTfGKN0Bh4/exec";
+const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbwkCZgIRU5X0TPb7gfUku8gj7cTvxtYftjdhh4q0d4r_1BMXaupuzQeAsEspMnUpL5D/exec";
 
 (function () {
   const form = document.getElementById("filtro-form");
@@ -487,18 +487,7 @@ const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhH
 
     if (nameInput) {
       const normalizedName = (nameInput.value || "").replace(/\s+/g, " ").trim();
-      const words = normalizedName.split(" ").filter(Boolean);
-      const namePattern = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' -]+$/;
-
       nameInput.value = normalizedName;
-
-      if (normalizedName.length < 5) {
-        nameInput.setCustomValidity("Introduce nombre y apellidos (mínimo 5 caracteres).");
-      } else if (words.length < 2) {
-        nameInput.setCustomValidity("Introduce al menos nombre y apellido.");
-      } else if (!namePattern.test(normalizedName)) {
-        nameInput.setCustomValidity("El nombre solo puede contener letras, espacios, guiones y apóstrofes.");
-      }
     }
 
     if (emailInput) {
@@ -599,9 +588,14 @@ const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyZUgEnrMc5sUQkVhH
 
       // Sin adjuntar imágenes (campo eliminado)
 
+      const params = new URLSearchParams();
+      for (const [key, value] of fd.entries()) {
+        params.append(key, value);
+      }
+
       await fetch(ENDPOINT_URL, {
         method: "POST",
-        body: fd,
+        body: params,
         mode: "no-cors",
       });
 
